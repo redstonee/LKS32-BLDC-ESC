@@ -4,16 +4,16 @@
 
 enum class AltFunc
 {
-    GPIO = 0,
-    SysAF,
+    GPIO = 0, // GPIO, Analog
+    SysAF,    // Comparator, Clock_Out, SWD
     Hall,
-    MCPWM,
+    MCPWM, // Motor_PWM
     UART,
     SPI,
     I2C,
-    Timer01,
-    Timer23,
-    Debug,
+    Timer01, // Timer0, Timer1
+    Timer23, // Timer2, Timer3, QEP0, QEP1
+    ADC_Trigger,
     CAN,
     SIF,
     CL
@@ -63,7 +63,7 @@ public:
 
     inline void toggle()
     {
-        GPIO_WriteBit(portNumberToPort(_portNumber), pinNumberToPin(_pinNumber), !static_cast<bool>(GPIO_ReadOutputDataBit(portNumberToPort(_portNumber), pinNumberToPin(_pinNumber))));
+        GPIO_WriteBit(portNumberToPort(_portNumber), pinNumberToPin(_pinNumber), static_cast<BitAction>(!GPIO_ReadOutputDataBit(portNumberToPort(_portNumber), pinNumberToPin(_pinNumber))));
     }
 
     inline void setAF(AltFunc afnum)

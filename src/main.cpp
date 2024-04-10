@@ -1,7 +1,7 @@
-#include "system_lks32mc07x.h"
-
 #include "GPIO.hpp"
 #include "HWSerial.hpp"
+
+#include "system_lks32mc07x.h"
 
 #include "config.h"
 int main(void)
@@ -11,7 +11,6 @@ int main(void)
 
     HWSerial Serial0(UART0, &u0rx, &u0tx);
     Serial0.begin(115200);
-    char fuckStr[] = "Fuck The World!";
 
     while (1)
     {
